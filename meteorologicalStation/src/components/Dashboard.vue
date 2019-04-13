@@ -13,7 +13,7 @@
                     <img src="../../../../humidity.png" alt="Responsive image" class="img-fluid">
                   </div>
                   <div class="col-md-6">
-                    <h2 class="card-title text-primary">63%</h2>
+                    <h2 class="card-title text-primary">{{this.$store.state.humidity}}</h2>
                     <div class="text-muted">Humidity</div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
 
                   </div>
                     <div class="col-md-6">
-                        <h2 class="card-title text-primary">False</h2>
+                        <h2 class="card-title text-primary">{{this.$store.state.rain}}</h2>
                         <div class="text-muted">Raining</div>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
 
                   </div>
                   <div class="col-md-6">
-                    <h2 class="card-title text-primary">12 °C</h2>
+                    <h2 class="card-title text-primary">{{this.$store.state.temperature}} °C</h2>
                     <div class="text-muted">Temperature</div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <img src="../../../../wind_speed.png" alt="Responsive image" class="img-fluid">
                   </div>
                   <div class="col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <h2 class="card-title text-primary">20 Km/h</h2>
+                    <h2 class="card-title text-primary">{{this.$store.state.wind}} Km/h</h2>
                     <div class="text-muted">Wind Speed</div>
                   </div>
                 </div>
@@ -100,7 +100,7 @@
                     <img src="../../../../pressure.png" alt="Responsive image" class="img-fluid">
                 </div>
                     <div class="col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <h2 class="card-title text-primary">1020</h2><h5 class="text-primary"> HPA</h5>
+                    <h2 class="card-title text-primary">{{this.$store.state.pressure}} </h2><h5 class="text-primary"> HPA</h5>
                     <div class="text-muted">Pressure</div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                     
                     </div>
                     <div class="col-md-6">
-                    <h2 class="card-title text-primary">60%</h2>
+                    <h2 class="card-title text-primary">{{this.$store.state.uvintensity}} %</h2>
                     <div class="text-muted">UV Intensity</div>
                   </div>
                 </div>
@@ -137,6 +137,11 @@
 <script>
 
     export default {
+
+	mounted(){
+	    this.$store.dispatch('showDataStreamView');
+	    this.$store.dispatch('lalala');
+	}
   
     }
 
