@@ -4,7 +4,6 @@ import 'es6-promise/auto'
 
 import Vue from 'vue'
 import { store } from './store/store.js'
-import VueRouter from 'vue-router'
 import App from './App'
 
 Vue.config.productionTip = false

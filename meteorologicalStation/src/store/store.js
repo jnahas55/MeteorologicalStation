@@ -91,7 +91,7 @@ export const store = new Vuex.Store({
       })
     },
 
-    lalala: (context) => {
+    fetchDataStreamsState: (context) => {
 	window.setInterval(function(){
 	    context.dispatch('showDataStreamView');
 	}, 5000);
