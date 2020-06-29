@@ -10,10 +10,10 @@
                 <div class="row">
                   <div class="col-md-6">               
                     <!--i class="fas fa-tint" style="font-size:40px;"></i-->
-                    <img src="../../../../humidity.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/humidity.png" alt="Responsive image" class="img-fluid">
                   </div>
                   <div class="col-md-6">
-                    <h2 v-if="this.$store.state.humidity === undefined" class="card-title text-primary">- %</h2>
+                    <h2 v-if="this.$store.state.humidity === undefined || this.$store.state.humidity === 'N/A'" class="card-title text-primary">- %</h2>
                     <h2 v-else class="card-title text-primary">{{this.$store.state.humidity*100}} %</h2>
                     <div class="text-muted">Humidity</div>
                   </div>
@@ -31,12 +31,12 @@
                 <div class="row">
                   <div class="col-md-6">
                     <!--i class="fas fa-umbrella" style="font-size:40px;"></i-->
-                    <img src="../../../../rain.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/rain.png" alt="Responsive image" class="img-fluid">
 
                   </div>
                     <div class="col-md-6">
 
-			<div v-if="this.$store.state.rain === undefined">
+			<div v-if="this.$store.state.rain === undefined || this.$store.state.rain === 'N/A'">
 	                   <h2 class="card-title text-primary">-</h2>
 			</div>
 
@@ -62,11 +62,11 @@
                 <div class="row">
                   <div class="col-md-6">
                     <!--i class="fas fa-thermometer-half" style="font-size:40px;"></i-->
-                    <img src="../../../../temperature.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/temperature.png" alt="Responsive image" class="img-fluid">
 
                   </div>
                   <div class="col-md-6">
-                    <h2 v-if="this.$store.state.temperature === undefined" class="card-title text-primary"> - °C</h2>
+                    <h2 v-if="this.$store.state.temperature === undefined || this.$store.state.temperature === 'N/A'" class="card-title text-primary"> - °C</h2>
                     <h2 v-else class="card-title text-primary">{{this.$store.state.temperature}} °C</h2>
                     <div class="text-muted">Temperature</div>
                     </div>
@@ -88,10 +88,10 @@
               <div class="card-body text-center">
                 <div class="row">
                   <div class="col-md-6">
-                    <img src="../../../../wind_speed.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/wind_speed.png" alt="Responsive image" class="img-fluid">
                   </div>
                   <div class="col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <h2 v-if="this.$store.state.wind===undefined" class="card-title text-primary">- km/h</h2>
+                    <h2 v-if="this.$store.state.wind===undefined || this.$store.state.wind === 'N/A'" class="card-title text-primary">- km/h</h2>
                     <h2 v-else class="card-title text-primary">{{this.$store.state.wind}} km/h</h2>
                     <div class="text-muted">Wind Speed</div>
                   </div>
@@ -109,10 +109,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <!--i class="fas fa-weight" style="font-size:40px;"></i-->
-                    <img src="../../../../pressure.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/pressure.png" alt="Responsive image" class="img-fluid">
                 </div>
                     <div class="col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <h2 v-if="this.$store.state.pressure===undefined" class="card-title text-primary"> - hPa</h2>
+                    <h2 v-if="this.$store.state.pressure===undefined || this.$store.state.pressure === 'N/A'" class="card-title text-primary"> - hPa</h2>
                     <h2 v-else class="card-title text-primary">{{this.$store.state.pressure/100}} hPa</h2>
                     <div class="text-muted">Pressure</div>
                   </div>
@@ -130,11 +130,11 @@
                 <div class="row">
                   <div class="col-md-6">
                     <!--i class="fas fa-sun" style="font-size:40px;"></i-->
-                    <img src="../../../../sun.png" alt="Responsive image" class="img-fluid">
+                    <img src="../assets/sun.png" alt="Responsive image" class="img-fluid">
                     
                     </div>
                     <div class="col-md-6">
-                    <h2 v-if="this.$store.state.uvintensity===undefined" class="card-title text-primary">-<h3 class="card-title text-primary">mW/cm2</h3></h2>
+                    <h2 v-if="this.$store.state.uvintensity===undefined || this.$store.state.uvintensity === 'N/A'" class="card-title text-primary">-<h3 class="card-title text-primary">mW/cm2</h3></h2>
 		    <h2 v-else class="card-title text-primary">{{this.$store.state.uvintensity}} <h3 class="card-title text-primary">mW/cm2</h3></h2>
                     <div class="text-muted">UV Intensity</div>
                   </div>
@@ -153,6 +153,7 @@
     export default {
 
 	mounted(){
+	    this.$store.dispatch('addNecessaryDataStreams');
 	    this.$store.dispatch('showDataStreamView');
 	    this.$store.dispatch('fetchDataStreamsState');
 	}

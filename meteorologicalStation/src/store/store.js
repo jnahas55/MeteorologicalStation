@@ -26,6 +26,9 @@ export const store = new Vuex.Store({
     wind: undefined,
     pressure: undefined,
     uvintensity: undefined,
+
+    dataStreamNames : ["HumiditySensor", "RainSensor", "TemperatureSensor", "WindSpeedSensor", "PressureSensor","UVIntensitySensor"],
+
   },
 
   getters:{
@@ -96,6 +99,26 @@ export const store = new Vuex.Store({
 	    context.dispatch('showDataStreamView');
 	}, 5000);
 
-    }
+    },
+
+    addNecessaryDataStreams: (context) =>{
+      console.log("ENTERING addNecessaryDataStreams!!!");
+
+      for(let i=0; i<context.state.dataStreamNames.length; i++){ // sumar a Cosmos todos los Streams que necesita la aplicación
+        console.log("Action => " + JSON.stringify(context.state.dataStreamNames[i]));
+
+        axios.post( store.state.backendEndPoint + '/data-streams', {
+          name: context.state.dataStreamNames[i]
+        }, { headers: { "Content-Type": "application/json" } } ).then( function (response) {
+          console.log("SUCCESS!!! => " + JSON.stringify(response));
+
+        }).catch(function (error) {
+          console.log("error error!!! => " + JSON.stringify(error));
+
+        });
+      }
+
+    },
+
   }
 })
